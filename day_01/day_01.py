@@ -7,11 +7,9 @@ with open('input_data.txt', 'r') as f:
     for n in f:
         frequency += int(n)
 
-print('Part one answer: {}'.format(frequency))
-
 
 # Part Two
-def run():
+def part_2():
 
     freq = 0
     found = []
@@ -26,4 +24,6 @@ def run():
                 return freq
 
 
-print('Part two answer: {}'.format(run()))
+if __name__ == '__main__':
+    print(frequency)
+    print(part_2())

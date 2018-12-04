@@ -18,9 +18,7 @@ def run():
     input_data = cycle(open('input_data.txt'))
 
     while True:
-
         for num in input_data:
-
             found.append(freq)
             freq += int(num)
 

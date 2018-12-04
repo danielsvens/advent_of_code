@@ -19,7 +19,6 @@ def find_letters():
             three += 1
         if 2 in item.values():
             two += 1
-            continue
 
     return two * three
 

@@ -13,10 +13,10 @@ def part_2():
 
     freq = 0
     found = []
-    input_data = cycle(open('input_data.txt'))
+    input_data = open('input_data.txt')
 
     while True:
-        for num in input_data:
+        for num in cycle(input_data):
             found.append(freq)
             freq += int(num)
 

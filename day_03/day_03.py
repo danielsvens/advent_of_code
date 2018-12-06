@@ -62,7 +62,7 @@ if __name__ == '__main__':
     fabric_grid = total_fabric()
     claims = get_data()
     for inches in claims.items():
-        claim(fabric_grid, inches.__getitem__(1)[0], inches.__getitem__(1)[1])
+        claim(fabric_grid, inches[1][0], inches[1][1])
 
     for i in fabric_grid:
         overlap += i.count('0')
@@ -71,4 +71,4 @@ if __name__ == '__main__':
 
     # Part two
     for inches in claims.items():
-        unique(fabric_grid, inches[0], inches.__getitem__(1)[0], inches.__getitem__(1)[1])
+        unique(fabric_grid, inches[0], inches[1][0], inches[1][1])

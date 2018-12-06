@@ -18,13 +18,15 @@ def total_fabric():
     return [['.'] * 1000 for _ in range(1000)]
 
 
-def claim(grid, kordinates, claim):
-    kord_1, kord_2 = int(kordinates[0]), int(kordinates[1])
+def claim(grid, coordinates, claim):
+    kord_1, kord_2 = int(coordinates[0]), int(coordinates[1])
     claim_1, claim_2 = int(claim[0]), int(claim[1])
-    constant_1, constant_2 = int(kordinates[0]), int(kordinates[1])
+    constant_1, constant_2 = int(coordinates[0]), int(coordinates[1])
 
     for _ in range(claim_1 * claim_2):
         if grid[kord_1][kord_2] == '#':
+            grid[kord_1][kord_2] = '0'
+        elif grid[kord_1][kord_2] == '0':
             grid[kord_1][kord_2] = '0'
         else:
             grid[kord_1][kord_2] = '#'
@@ -35,12 +37,16 @@ def claim(grid, kordinates, claim):
 
 
 if __name__ == '__main__':
+    overlap = 0
     fabric_grid = total_fabric()
     claims = get_data()
-    for fabric in claims.items():
-        claim(fabric_grid, fabric.__getitem__(1)[0], fabric.__getitem__(1)[1])
+    for inches in claims.items():
+        claim(fabric_grid, inches.__getitem__(1)[0], inches.__getitem__(1)[1])
 
-    obj = '0'
+    for i in fabric_grid:
+        overlap += i.count('0')
 
-    print(fabric_grid.count(obj))
+    print(overlap)
+
+
 

@@ -1,74 +1,46 @@
 from collections import OrderedDict
 
-""" NOTES """
-
-input_dict = OrderedDict()
-
-with open('input_data.txt', 'r') as f:
-    for line in f.readlines():
-        input_dict.update({line.split()[0][1:]: [tuple(line.split()[2][:-1].split(',')), tuple(line.split()[3].split('x'))]})
-
-print(input_dict['1'])
-print(input_dict['1'][0])
-print(input_dict['1'][1])
 
 # Part One
-grid = [['.'] * 8 for _ in range(8)]
+def get_data():
 
-"""
-#1 @ 1,3: 4x4
-#2 @ 3,1: 4x4
-#3 @ 5,5: 2x2
-"""
-l, r = 1, 3
+    input_dict = OrderedDict()
 
-# Prototyp
-data = {'1': [(1, 3), (4, 4)]}  # ID - tuple kordinater - tuple area
+    with open('input_data.txt', 'r') as f:
+        for line in f.readlines():
+            input_dict.update(
+                {line.split()[0][1:]: [tuple(line.split()[2][:-1].split(',')), tuple(line.split()[3].split('x'))]})
 
-for _ in range(4 * 4):
-    if grid[l][r] == '#':
-        grid[l][r] = '0'
-    else:
-        grid[l][r] = '#'
-    r += 1
-    if r == 3+4:
-        l += 1
-        r = 3
-
-l, r = 3, 1
+    return input_dict
 
 
-c1, c2 = input_dict['1'][0]
-print(c1, c2)
-
-for _ in range(4 * 4):
-    if grid[l][r] == '#':
-        grid[l][r] = '0'
-    else:
-        grid[l][r] = '#'
-    r += 1
-    if r == 1+4:
-        l += 1
-        r = 1
+def total_fabric():
+    return [['.'] * 1000 for _ in range(1000)]
 
 
-print(grid[0])
-print(grid[1])
-print(grid[2])
-print(grid[3])
-print(grid[4])
-print(grid[5])
-print(grid[6])
-print(grid[7])
+def claim(grid, kordinates, claim):
+    kord_1, kord_2 = int(kordinates[0]), int(kordinates[1])
+    claim_1, claim_2 = int(claim[0]), int(claim[1])
+    constant_1, constant_2 = int(kordinates[0]), int(kordinates[1])
 
-# Output
-""" 
-['.', '.', '.', '.', '.', '.', '.', '.']
-['.', '.', '.', '#', '#', '#', '#', '.']
-['.', '.', '.', '#', '#', '#', '#', '.']
-['.', '#', '#', '#', '#', '#', '#', '.']
-['.', '#', '#', '#', '#', '#', '#', '.']
-['.', '#', '#', '#', '#', '.', '.', '.']
-['.', '#', '#', '#', '#', '.', '.', '.']
-['.', '.', '.', '.', '.', '.', '.', '.']
-"""
+    for _ in range(claim_1 * claim_2):
+        if grid[kord_1][kord_2] == '#':
+            grid[kord_1][kord_2] = '0'
+        else:
+            grid[kord_1][kord_2] = '#'
+        kord_2 += 1
+        if kord_2 == constant_2 + claim_2:
+            kord_1 += 1
+            kord_2 = constant_2
+
+
+if __name__ == '__main__':
+    fabric_grid = total_fabric()
+    claims = get_data()
+    for fabric in claims.items():
+        claim(fabric_grid, fabric.__getitem__(1)[0], fabric.__getitem__(1)[1])
+
+    obj = '0'
+
+    print(fabric_grid.count(obj))
+

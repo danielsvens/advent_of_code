@@ -12,12 +12,12 @@ with open('input_data.txt', 'r') as f:
 def part_2():
 
     freq = 0
-    found = []
+    found = set()
     input_data = open('input_data.txt')
 
     while True:
         for num in cycle(input_data):
-            found.append(freq)
+            found.add(freq)
             freq += int(num)
 
             if freq in found:

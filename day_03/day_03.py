@@ -25,14 +25,32 @@ l, r = 1, 3
 # Prototyp
 data = {'1': [(1, 3), (4, 4)]}  # ID - tuple kordinater - tuple area
 
-for _ in range(4):
-    grid[l][r:r + 4] = '#' * 4
-    l += 1
-
-l = 1
-for _ in range(4):
-    grid[r][l:l + 4] = '#' * 4
+for _ in range(4 * 4):
+    if grid[l][r] == '#':
+        grid[l][r] = '0'
+    else:
+        grid[l][r] = '#'
     r += 1
+    if r == 3+4:
+        l += 1
+        r = 3
+
+l, r = 3, 1
+
+
+c1, c2 = input_dict['1'][0]
+print(c1, c2)
+
+for _ in range(4 * 4):
+    if grid[l][r] == '#':
+        grid[l][r] = '0'
+    else:
+        grid[l][r] = '#'
+    r += 1
+    if r == 1+4:
+        l += 1
+        r = 1
+
 
 print(grid[0])
 print(grid[1])

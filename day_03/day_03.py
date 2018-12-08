@@ -22,7 +22,7 @@ def claim(grid, coordinates, claim):
 
     kord_1, kord_2 = int(coordinates[0]), int(coordinates[1])
     claim_1, claim_2 = int(claim[0]), int(claim[1])
-    constant_1, constant_2 = int(coordinates[0]), int(coordinates[1])
+    constant = int(coordinates[1])
 
     for _ in range(claim_1 * claim_2):
         if grid[kord_1][kord_2] == '#':
@@ -32,9 +32,9 @@ def claim(grid, coordinates, claim):
         else:
             grid[kord_1][kord_2] = '#'
         kord_2 += 1
-        if kord_2 == constant_2 + claim_2:
+        if kord_2 == constant + claim_2:
             kord_1 += 1
-            kord_2 = constant_2
+            kord_2 = constant
 
 
 def unique(grid, claim_id, coordinates, claim):
@@ -42,19 +42,20 @@ def unique(grid, claim_id, coordinates, claim):
     id = claim_id
     kord_1, kord_2 = int(coordinates[0]), int(coordinates[1])
     claim_1, claim_2 = int(claim[0]), int(claim[1])
-    constant_1, constant_2 = int(coordinates[0]), int(coordinates[1])
+    constant = int(coordinates[1])
     counter = 0
 
     for _ in range(claim_1 * claim_2):
         if grid[kord_1][kord_2] == '#':
             counter += 1
         kord_2 += 1
-        if kord_2 == constant_2 + claim_2:
+        if kord_2 == constant + claim_2:
             kord_1 += 1
-            kord_2 = constant_2
+            kord_2 = constant
 
         if counter == claim_1 * claim_2:
             print('#{}'.format(id))
+            break
 
 
 if __name__ == '__main__':

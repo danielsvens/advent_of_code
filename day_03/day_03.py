@@ -55,7 +55,6 @@ def unique(grid, claim_id, coordinates, claim):
 
         if counter == claim_1 * claim_2:
             print('#{}'.format(id))
-            break
 
 
 if __name__ == '__main__':

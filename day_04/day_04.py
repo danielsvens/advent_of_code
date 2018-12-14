@@ -1,4 +1,5 @@
 from datetime import datetime
+from pprint import pprint
 
 
 def get_data():
@@ -25,6 +26,8 @@ def part_one(data_list):
 
     data_list.sort()
 
+    pprint(data_list)
+
     for guard in data_list:
         if guard.split()[2] == 'Guard':
             guard_id = int(guard.split()[3].replace('#', ''))
@@ -41,7 +44,8 @@ def part_one(data_list):
         two = [datetime.strptime(x, '%Y-%m-%d %H:%M') for x in time[1]['shift'][1::2]]
 
         print(len(one), len(two))
-        result = [(x.total_seconds() / 60 - 1) for x in [b - a for a, b in zip(one, two)] if x.total_seconds() / 60 != 1]
+        result = [(x.total_seconds() / 60) for x in [b - a for a, b in zip(one, two)]]
+        print(result)
         try:
             minutes[time[0]] = max(result)
         except ValueError:

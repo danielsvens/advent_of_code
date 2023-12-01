@@ -24,7 +24,7 @@ def find_digit(value):
 
         word += c
         for k in WORD_TO_NUMBER.keys():
-            if k in word[::-1] or k in word:
+            if k in [word[::-1], word]:
                 return WORD_TO_NUMBER[k]
 
 def part_1():
@@ -33,6 +33,8 @@ def part_1():
 
     for val in inpt:
         temp = ''
+
+        ''.join([c for c in val if char in NUMBERS])
 
         for char in val:
             if char in NUMBERS:

@@ -45,13 +45,6 @@ def part_1():
 def part_2():
     print(sum(map(int, [f'{find_digit(val)}{find_digit(val[::-1])}' for val in get_input()])))
 
-
-def get_number(char):
-    try:
-        return int(char)
-    except Exception:
-        return None
-
 if __name__ == '__main__':
-    #part_1()
+    part_1()
     part_2()

@@ -17,14 +17,14 @@ WORD_TO_NUMBER = {
 }
 
 def find_digit(value):
-    num = ''
+    word = ''
     for c in value:
         if c in NUMBERS:
             return c
 
-        num += c
+        word += c
         for k in WORD_TO_NUMBER.keys():
-            if k in num[::-1] or k in num:
+            if k in word[::-1] or k in word:
                 return WORD_TO_NUMBER[k]
 
 def part_1():

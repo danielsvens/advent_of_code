@@ -16,7 +16,7 @@ WORD_TO_NUMBER = {
     'nine': '9'
 }
 
-def find_first(value):
+def find_digit(value):
     num = ''
     for c in value:
         if c in NUMBERS:
@@ -24,18 +24,7 @@ def find_first(value):
 
         num += c
         for k in WORD_TO_NUMBER.keys():
-            if k in num:
-                return WORD_TO_NUMBER[k]
-
-def find_last(value):
-    num = ''
-    for c in value[::-1]:
-        if c in NUMBERS:
-            return c
-
-        num += c
-        for k in WORD_TO_NUMBER.keys():
-            if k in num[::-1]:
+            if k in num[::-1] or k in num:
                 return WORD_TO_NUMBER[k]
 
 def part_1():
@@ -54,16 +43,7 @@ def part_1():
     print(sum(map(int, values)))
 
 def part_2():
-    inpt = get_input()
-    values = []
-
-    for val in inpt:
-        first = find_first(val)
-        last = find_last(val)
-        
-        values.append(f'{first}{last}')
-
-    print(sum(map(int, values)))
+    print(sum(map(int, [f'{find_digit(val)}{find_digit(val[::-1])}' for val in get_input()])))
 
 
 def get_number(char):

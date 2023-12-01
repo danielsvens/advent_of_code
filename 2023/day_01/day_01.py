@@ -32,15 +32,8 @@ def part_1():
     values = []
 
     for val in inpt:
-        temp = ''
-
-        ''.join([c for c in val if char in NUMBERS])
-
-        for char in val:
-            if char in NUMBERS:
-                temp += char
-        
-        values.append(f'{temp[0]}{temp[-1]}')
+        numbers = ''.join([c for c in val if c in NUMBERS])
+        values.append(f'{numbers[0]}{numbers[-1]}')
 
     print(sum(map(int, values)))
 

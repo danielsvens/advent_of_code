@@ -2,7 +2,7 @@ from functools import reduce
 
 CONFIGURATION = {'red': 12, 'green': 13, 'blue': 14}
 
-def get_input() -> list[str]:
+def get_input() -> dict:
     with open('input.txt') as f:
         return reduce(lambda x, y: x | y, [map_input(game) for game in [l.strip() for l in f.readlines()]], {})
     
@@ -31,7 +31,7 @@ def pick_largest(games, k, v):
     
     return {k: v}
 
-def approve(game, config_key, config_value):
+def is_possible(game, config_key, config_value):
     if game[config_key] <= config_value:
         return True
     
@@ -42,20 +42,21 @@ def part_1():
     result = []
     
     for k, v in games.items():
-
-        approved = []
-        for config_key, config_value in CONFIGURATION.items():
-            game = split_values(v)
-            approved.append(approve(game, config_key, config_value))
-
-        if all(approved):
+        if all([is_possible(split_values(v), cfg_key, cfg_val) for cfg_key, cfg_val in CONFIGURATION.items()]):
             result.append(k)
     
     print(sum(result))
 
 def part_2():
-    ...
+    games = get_input()
+    result = []
+    
+    for _, v in games.items():
+        values = split_values(v)
+        result.append(reduce(lambda x, y: x * y, values.values()))
+
+    print(sum(result))
 
 if __name__ == '__main__':
     part_1()
-    #part_2()
+    part_2()

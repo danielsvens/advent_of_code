@@ -32,10 +32,7 @@ def pick_largest(games, k, v):
     return {k: v}
 
 def is_possible(game, config_key, config_value):
-    if game[config_key] <= config_value:
-        return True
-    
-    return False
+    return game[config_key] <= config_value
     
 def part_1():
     games = get_input()
